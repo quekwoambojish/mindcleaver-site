@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MindCleaver</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #06060a;
+      --deep:       #0d0d18;
+      --panel:      #11111e;
+      --border:     #2a2040;
+      --silver:       #a8a8b8;
+      --silver-light: #d0d0e0;
+      --purple:     #6b3fa0;
+      --text:       #ccc5d8;
+      --muted:      #7a6e8a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.7;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      text-align: center;
+      padding: 80px 24px 60px;
+      background: linear-gradient(180deg, #0a0012 0%, var(--black) 100%);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(107,63,160,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .logo {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.6rem, 7vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      text-shadow: 0 0 40px rgba(201,168,76,0.45), 0 2px 0 #000;
+      position: relative;
+    }
+    .tagline {
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: var(--muted);
+      margin-top: 12px;
+      letter-spacing: 0.04em;
+    }
+    nav {
+      margin-top: 36px;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--gold-light); }
+
+    /* ── SECTIONS ── */
+    section { padding: 72px 24px; max-width: 860px; margin: 0 auto; }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0;
+    }
+
+    h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    h2::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin: 12px auto 0;
+      opacity: 0.4;
+    }
+
+    /* ── HERO / LORE ── */
+    .lore p { margin-bottom: 1.1em; }
+    .hook {
+      font-size: 1.25rem;
+      color: #ddd5ee;
+      font-style: italic;
+      border-left: 3px solid var(--gold);
+      padding-left: 20px;
+      margin: 32px 0;
+      line-height: 1.6;
+    }
+
+    /* ── ART STRIP ── */
+    .art-section {
+      background: var(--deep);
+      padding: 56px 24px;
+    }
+    .art-section-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .art-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .art-grid img {
+      image-rendering: pixelated;
+      width: 96px;
+      height: 96px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px rgba(107,63,160,0.6));
+      transition: transform 0.25s, filter 0.25s;
+    }
+    .art-grid img:hover {
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 20px rgba(201,168,76,0.7));
+    }
+
+    /* ── STORY ── */
+    .story-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 36px 40px;
+      margin-top: 8px;
+    }
+
+    /* ── EMAIL SIGNUP ── */
+    .signup-section {
+      background: linear-gradient(180deg, var(--deep) 0%, #0a0012 100%);
+      padding: 72px 24px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .signup-section h2 { margin-bottom: 12px; }
+    .signup-section .sub { color: var(--muted); margin-bottom: 36px; font-style: italic; }
+
+    /* ── REPLACE THIS BLOCK with your Mailchimp embed code ── */
+    .mc-form {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      max-width: 480px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .mc-form input[type="email"] {
+      flex: 1 1 260px;
+      background: #0f0f1a;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--text);
+      font-family: 'Crimson Text', serif;
+      font-size: 1rem;
+      padding: 12px 18px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .mc-form input[type="email"]:focus { border-color: var(--gold); }
+    .mc-form input[type="email"]::placeholder { color: var(--muted); }
+    .mc-form button {
+      background: var(--silver);
+      border: none;
+      border-radius: 2px;
+      color: #ffffff;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 12px 28px;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .mc-form button:hover { background: var(--gold-light); }
+    .mc-note {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 14px;
+      font-style: italic;
+    }
+    /* ── END MAILCHIMP PLACEHOLDER ── */
+
+    /* ── LINKS / SOCIAL ── */
+    .links-section { text-align: center; }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+    .btn {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--silver);
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .story-panel { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">MindCleaver</div>
+    <div class="tagline">Bound by their blades, the cycle of power starts anew.</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#story">The Story</a>
+      <a href="#notify">Stay Informed</a>
+      <a href="#links">Follow</a>
+    </nav>
+  </header>
+
+  <!-- ABOUT / LORE -->
+  <section id="about" class="lore">
+    <h2>What is MindCleaver?</h2>
+    <blockquote class="hook">
+      "Villages grow, factions rise, banditry finds a fresh start, and dragons begin their hunt...
+       The Mindguard's powers will weave into the social fabrics of their being, contorting a reformed world."
+    </blockquote>
+    <p>
+      MindCleaver is a book adaptation set in an old-magic fantasy world where every character
+      thinks, feels, and acts on its own. As a wizard whose immortal essence is bound to a blade, you
+      enter a living world, and begin to twist the minds inside it.
+    </p>
+    <p>
+      Shift the personalities of those around you between bravery, fear, agony, kindness,
+      and pleasure. Watch alliances tremble, leaders fall, and communities transform based on
+      what you have done to the minds inside them.
+    </p>
+    <p>
+      Within this world, you compete against other Mindguard, whose power's rival your own. 
+      Trapped in this infinite cycle of rebirth they have shed their mortal cares for the world,
+      staunch and prideful with power they seek to make these lands under their bidding.
+    </p>
+    <p style="color: var(--muted); font-style: italic; margin-top: 24px;">
+      Should the world become their palace, an eternal damnation awaits you...
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ART STRIP -->
+  <div class="art-section">
+    <div class="art-section-inner">
+      <h2>The World</h2>
+      <div class="art-grid">
+        <!-- Replace src paths with your actual image filenames -->
+        <img src="images/Unit-Dragon-1.png" alt="Dragon" title="Dragon" />
+        <img src="images/Unit-Guard-1.png" alt="Guard" title="Guard" />
+        <img src="images/Unit-Mindguard-5.png" alt="Mindguard" title="Mindguard" />
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- STORY -->
+  <section id="story">
+    <h2>Behind the Story</h2>
+    <div class="story-panel">
+      <p>
+        Some time ago, my father passed away and wrote the <em>Mindguard</em> series. I wanted to pass
+        that memory down to my son, so this game is based on the ritual a Mindguard from the series
+        performed.
+      </p>
+      <p style="margin-top: 1em;">
+        When a Mindguard became powerful enough, they could trap their essence into a blade 
+        in order to live on forever...The player, and the antagonists, are these Mindguard.
+        Their blades scattered across the world.
+      </p>
+      <p style="margin-top: 1em; color: var(--muted); font-style: italic;">
+        MindCleaver is currently in Mid Alpha — a playable build is live on Steam.
+        The game is built with Godot (C#) and targets a 2028 Q1 release.
+      </p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- EMAIL SIGNUP -->
+  <!-- ═══════════════════════════════════════════════════════════════════
+       MAILCHIMP INTEGRATION:
+       1. Log into Mailchimp → Audience → Signup Forms → Embedded Forms
+       2. Copy the form action URL (looks like:
+          https://xxxx.us1.list-manage.com/subscribe/post?u=XXX&amp;id=XXX)
+       3. Replace the action="#" below with that URL
+       4. Optionally replace the entire .mc-form block with Mailchimp's
+          generated embed code for full validation support
+       ═══════════════════════════════════════════════════════════════════ -->
+  <div class="signup-section" id="notify">
+    <h2>Stay Informed</h2>
+    <p class="sub">Be the first to know about updates, the debut trailer, and launch news.</p>
+    <form class="mc-form" action="https://mindcleaver.us22.list-manage.com/subscribe/post?u=f68464d9fd91ea93a190bc5c0&amp;id=91bcc27cc5&amp;f_id=00a3c2e1f0" method="post" target="_blank">
+      <input type="email" name="EMAIL" placeholder="your@email.com" required />
+      <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_f68464d9fd91ea93a190bc5c0_91bcc27cc5" tabindex="-1" value=""></div>
+      <button type="submit">Notify Me</button>
+    </form>
+    <p class="mc-note">No spam. Unsubscribe any time.</p>
+  </div>
+
+  <!-- LINKS -->
+  <section id="links" class="links-section">
+    <h2>Follow the Journey</h2>
+    <div class="social-links">
+      <!-- Replace href with your Steam store page URL when live -->
+      <a class="btn btn-primary" href="#" target="_blank">Wishlist on Steam</a>
+      <a class="btn btn-outline" href="https://www.youtube.com/@socalgg3468" target="_blank">YouTube</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 MindCleaver. All rights reserved.</p>
+    <p style="margin-top: 6px; font-style: italic;">Based on the <em>Mindguard</em> series.</p>
+  </footer>
+
+</body>
+</html>
