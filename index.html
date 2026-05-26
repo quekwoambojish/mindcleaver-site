@@ -211,6 +211,26 @@
       transition: background 0.2s;
     }
     .mc-form button:hover { background: var(--gold-light); }
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(107,63,160,0.7),
+                0 0 22px rgba(107,63,160,0.35);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(201,168,76,0.9),
+                0 0 45px rgba(201,168,76,0.45),
+                0 0 70px rgba(201,168,76,0.15);
+  }
+}
+
+.mc-form button {
+  animation: glow-pulse 2.2s ease-in-out infinite;
+}
+.mc-form button:hover {
+  animation: none;
+  box-shadow: 0 0 24px rgba(201,168,76,1),
+              0 0 55px rgba(201,168,76,0.55);
+}
     .mc-note {
       color: var(--muted);
       font-size: 0.85rem;
@@ -276,6 +296,25 @@
       <a href="#links">Follow</a>
     </nav>
   </header>
+
+  <!-- EMAIL SIGNUP -->
+  <div class="signup-section" id="notify">
+    <h2>Test Access and Other Secrets</h2>
+    <p class="sub">Be the first to get a chance to test the game, see new release info, and special sneak peeks.</p>
+    <form class="mc-form" action="https://mindcleaver.us22.list-manage.com/subscribe/post?u=f68464d9fd91ea93a190bc5c0&amp;id=91bcc27cc5&amp;f_id=00a3c2e1f0" method="post" target="_blank">
+      <input type="email" name="EMAIL" placeholder="your@email.com" required />
+      <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_f68464d9fd91ea93a190bc5c0_91bcc27cc5" tabindex="-1" value=""></div>
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="mc-note">Unsubscribe any time, more testing details to come.</p>
+  </div>
+
+  <section id="links" class="links-section">
+    <h2>Follow the Journey</h2>
+    <div class="social-links">
+      <a class="btn btn-primary" href="https://www.tiktok.com/@greggnavbol" target="_blank">TikTok</a>
+      <a class="btn btn-outline" href="https://x.com/greggnavbol" target="_blank">X</a>
+    </div>
 
   <section id="about" class="lore">
     <h2>What is MindCleaver?</h2>
@@ -343,24 +382,7 @@
 
   <div class="divider"></div>
 
-  <!-- EMAIL SIGNUP -->
-  <div class="signup-section" id="notify">
-    <h2>Test Access and Other Secrets</h2>
-    <p class="sub">Be the first to get a chance to test the game, see new release info, and special sneak peeks.</p>
-    <form class="mc-form" action="https://mindcleaver.us22.list-manage.com/subscribe/post?u=f68464d9fd91ea93a190bc5c0&amp;id=91bcc27cc5&amp;f_id=00a3c2e1f0" method="post" target="_blank">
-      <input type="email" name="EMAIL" placeholder="your@email.com" required />
-      <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_f68464d9fd91ea93a190bc5c0_91bcc27cc5" tabindex="-1" value=""></div>
-      <button type="submit">Subscribe</button>
-    </form>
-    <p class="mc-note">Unsubscribe any time, more testing details to come.</p>
-  </div>
 
-  <section id="links" class="links-section">
-    <h2>Follow the Journey</h2>
-    <div class="social-links">
-      <a class="btn btn-primary" href="#" target="_blank">Wishlist on Steam</a>
-      <a class="btn btn-outline" href="https://www.youtube.com/@socalgg3468" target="_blank">YouTube</a>
-    </div>
   </section>
 
   <footer>
